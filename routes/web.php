@@ -9,8 +9,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [AuthController::class, 'login'])->name('login.post');
 Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('register');
 Route::post('/register', [AuthController::class, 'register'])->name('register');
+
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
 Route::get('/materias', [MateriaController::class, 'index'])->name('materias.index');
 Route::get('/materias/crear', [MateriaController::class, 'crear'])->name('materias.crear');

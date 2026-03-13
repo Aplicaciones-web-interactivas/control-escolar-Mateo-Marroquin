@@ -6,10 +6,11 @@
     <div class="bg-white p-8 rounded-2xl shadow-xl w-full max-w-md border border-gray-100">
         <h2 class="text-2xl font-bold text-gray-800 mb-6 text-center">Bienvenido de nuevo</h2>
 
-        <form action="#" method="POST" class="space-y-4">
+        <form action="{{route('login.post')}}" method="POST" class="space-y-4">
+            @csrf
             <div>
                 <label class="block text-sm font-medium text-gray-700">Clave Institucional</label>
-                <input type="email" name='clave_isntitucional' class="w-full mt-1 p-3 border rounded-xl focus:ring-2 focus:ring-blue-500 outline-none transition-all">
+                <input type="text" name='clave_institucional' class="w-full mt-1 p-3 border rounded-xl focus:ring-2 focus:ring-blue-500 outline-none transition-all">
             </div>
 
             <div>

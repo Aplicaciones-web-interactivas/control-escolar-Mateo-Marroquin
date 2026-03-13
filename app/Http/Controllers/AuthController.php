@@ -18,9 +18,10 @@ class AuthController extends Controller
     }
 
     public function login(Request $request){
+        //dd($request->all());
         $credenciales = $request->validate([
             'clave_institucional' => ['required'],
-            'password' => ['required'],
+            'contraseña' => ['required'],
         ]);
 
         $usuario = Usuario::where('clave_institucional', $request->clave_institucional)->first();
@@ -32,7 +33,9 @@ class AuthController extends Controller
             //$request->session()->regenerate();
 
             return redirect('/dashboard')->with('success', 'Entraste correctamente.');
+
         }
+        return back()->withErrors(['error' => 'Usuario o contraseña incorrectos']);
     }
 
     public function showRegisterForm(){
