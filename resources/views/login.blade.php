@@ -24,7 +24,7 @@
         </form>
 
         <p class="mt-6 text-center text-sm text-gray-500">
-            ¿No tienes cuenta? <a href="#" class="text-blue-700 font-bold hover:underline">Regístrate aquí</a>
+            ¿No tienes cuenta? <a href="{{route('register')}}" class="text-blue-700 font-bold hover:underline">Regístrate aquí</a>
         </p>
     </div>
 @endsection
