@@ -38,7 +38,7 @@ class HorarioController extends Controller
         // Guardado manual (ejercicio de consulta)
         Horario::create($request->all());
 
-        return redirect()->route('dashboard')->with('success', 'Horario asignado');
+        return redirect()->route('horarios.index')->with('success', 'Horario asignado');
     }
 
     public function editar($id)

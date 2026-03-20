@@ -2,6 +2,11 @@
 
 @section('content')
     <div class="max-w-2xl mx-auto bg-white p-8 rounded-2xl shadow-lg">
+        <div class="mb-4">
+            <a href="{{ route('horarios.index') }}" class="text-blue-600 hover:text-blue-800 text-sm font-semibold flex items-center">
+                <i class="fas fa-arrow-left mr-2"></i> Volver a la lista
+            </a>
+        </div>
         <h2 class="text-2xl font-bold mb-6">Asignar Nuevo Horario</h2>
 
         <form action="{{ route('horarios.guardar') }}" method="POST" class="space-y-4">

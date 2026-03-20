@@ -16,8 +16,8 @@
     <div class="container mx-auto flex justify-between items-center">
         <h1 class="text-xl font-bold tracking-tight">Portal de Sistemas</h1>
         <div class="space-x-4">
-            <a href="#" class="hover:text-blue-300">Inicio</a>
-            <a href="#" class="bg-blue-700 px-4 py-2 rounded-lg hover:bg-blue-600">Acceso</a>
+            <a href="{{route('dashboard')}}" class="hover:text-blue-300">Inicio</a>
+            <a href="{{route('login')}}" class="bg-blue-700 px-4 py-2 rounded-lg hover:bg-blue-600">Acceso</a>
         </div>
     </div>
 </nav>
