@@ -33,7 +33,7 @@
                 <tbody class="divide-y divide-gray-100">
                 @forelse($inscripciones as $i)
                     <tr class="hover:bg-blue-50 transition">
-                        <td class="px-6 py-4 font-medium text-gray-800">{{ $i->usuario->nombre }}</td>
+                        <td class="px-6 py-4 font-medium text-gray-800">{{ $i->user->name }}</td>
                         <td class="px-6 py-4 text-gray-600">Grupo: {{ $i->grupo->nombre }}</td>
                         <td class="px-6 py-4 text-center">
                             <div class="flex justify-center items-center space-x-4">

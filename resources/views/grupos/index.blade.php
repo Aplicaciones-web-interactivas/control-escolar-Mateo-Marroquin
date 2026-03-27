@@ -45,7 +45,7 @@
                                 <div class="text-xs text-gray-500 font-mono">{{ $grupo->horario->hora_inicio }} - {{ $grupo->horario->hora_fin }}</div>
                             </td>
                             <td class="px-6 py-4 text-sm text-gray-600">
-                                {{ $grupo->horario->usuario->nombre }}
+                                {{ $grupo->horario->user->name }}
                             </td>
                             <td class="px-6 py-4 text-center">
                                 <div class="flex justify-center items-center space-x-4">

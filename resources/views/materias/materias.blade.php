@@ -18,7 +18,7 @@
                     <h3 class="text-xl font-bold text-gray-800">Materias Registradas</h3>
                     <p class="text-sm text-gray-500">Catálogo de asignaturas disponibles en el sistema.</p>
                 </div>
-                <a href="{{ route('materias.crear')}}" class="bg-green-600 hover:bg-green-700 text-white px-5 py-2.5 rounded-xl text-sm font-bold transition flex items-center shadow-lg">
+                <a href="{{ route('materias.crear')}}" class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2.5 rounded-xl text-sm font-bold transition flex items-center shadow-lg">
                     <i class="fas fa-plus mr-2"></i> Agregar Nueva Materia
                 </a>
             </div>

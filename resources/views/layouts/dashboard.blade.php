@@ -38,9 +38,9 @@
         <header class="bg-white shadow-sm p-4 flex justify-between items-center">
             <h2 class="text-xl font-semibold text-gray-700">Panel de Control</h2>
             <div class="flex items-center space-x-4">
-                <span class="text-gray-600">Bienvenido, <strong>{{ Auth::user()->nombre }}</strong></span>
+                <span class="text-gray-600">Bienvenido, <strong>{{ Auth::user()->name }}</strong></span>
                 <div class="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center text-white font-bold">
-                    {{ substr(Auth::user()->nombre, 0, 1) }}
+                    {{ substr(Auth::user()->name, 0, 1) }}
                 </div>
             </div>
         </header>

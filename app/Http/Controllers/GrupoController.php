@@ -11,20 +11,20 @@ class GrupoController extends Controller
     public function index()
     {
         // Cargamos la relación de horario y, en cascada, materia y usuario
-        $grupos = Grupo::with('horario.materia', 'horario.usuario')->get();
+        $grupos = Grupo::with('horario.materia', 'horario.user')->get();
         return view('grupos.index', compact('grupos'));
     }
 
     public function crear()
     {
-        $horarios = Horario::with('materia', 'usuario')->get();
+        $horarios = Horario::with('materia', 'user')->get();
         return view('grupos.crear', compact('horarios'));
     }
 
     public function guardar(Request $request)
     {
         $request->validate([
-            'nombre' => 'required|string|max:10',
+            'nombre' => 'required|string|max:50',
             'horario_id' => 'required|exists:horarios,id'
         ]);
 
@@ -35,14 +35,14 @@ class GrupoController extends Controller
     public function editar($id)
     {
         $grupo = Grupo::findOrFail($id);
-        $horarios = Horario::with('materia', 'usuario')->get();
+        $horarios = Horario::with('materia', 'user')->get();
         return view('grupos.editar', compact('grupo', 'horarios'));
     }
 
     public function update(Request $request, $id)
     {
         $request->validate([
-            'nombre' => 'required|string|max:10',
+            'nombre' => 'required|string|max:50',
             'horario_id' => 'required|exists:horarios,id'
         ]);
 

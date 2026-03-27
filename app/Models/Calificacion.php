@@ -13,7 +13,7 @@ class Calificacion extends Model
     protected $table = 'calificacions';
     protected $fillable = [
         'grupo_id',
-        'usuario_id',
+        'user_id',
         'calificacion'
     ];
 
@@ -21,7 +21,7 @@ class Calificacion extends Model
         return $this->belongsTo(Grupo::class);
     }
 
-    public function usuario() {
-        return $this->belongsTo(Usuario::class);
+    public function user() {
+        return $this->belongsTo(User::class);
     }
 }

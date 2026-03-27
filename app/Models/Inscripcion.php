@@ -15,7 +15,7 @@ class Inscripcion extends Model
 
     protected $fillable = [
         'grupo_id',
-        'usuario_id',
+        'user_id',
     ];
 
     public function grupo(): BelongsTo
@@ -23,8 +23,8 @@ class Inscripcion extends Model
         return $this->belongsTo(Grupo::class);
     }
 
-    public function usuario(): BelongsTo
+    public function user(): BelongsTo
     {
-        return $this->belongsTo(Usuario::class);
+        return $this->belongsTo(User::class);
     }
 }

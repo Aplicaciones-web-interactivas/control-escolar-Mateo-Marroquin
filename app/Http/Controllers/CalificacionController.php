@@ -4,26 +4,27 @@ namespace App\Http\Controllers;
 
 use App\Models\Calificacion;
 use App\Models\Grupo;
+use App\Models\User;
 use App\Models\Usuario;
 use Illuminate\Http\Request;
 
 class CalificacionController extends Controller
 {
     public function index() {
-        $calificaciones = Calificacion::with(['grupo.horario.materia', 'usuario'])->get();
+        $calificaciones = Calificacion::with(['grupo.horario.materia', 'user'])->get();
         return view('calificaciones.index', compact('calificaciones'));
     }
 
     public function crear() {
         $grupos = Grupo::with('horario.materia')->get();
-        $usuarios = Usuario::all();
+        $usuarios = User::all();
         return view('calificaciones.crear', compact('grupos', 'usuarios'));
     }
 
     public function guardar(Request $request) {
         $request->validate([
             'grupo_id' => 'required|exists:grupos,id',
-            'usuario_id' => 'required|exists:usuarios,id',
+            'user_id' => 'required|exists:users,id',
             'calificacion' => 'required|numeric|min:0|max:100',
         ]);
 
@@ -34,7 +35,7 @@ class CalificacionController extends Controller
     public function editar($id) {
         $calificacion = Calificacion::findOrFail($id);
         $grupos = Grupo::with('horario.materia')->get();
-        $usuarios = Usuario::all();
+        $usuarios = User::all();
         return view('calificaciones.editar', compact('calificacion', 'grupos', 'usuarios'));
     }
 
