@@ -3,26 +3,27 @@ namespace App\Http\Controllers;
 
 use App\Models\Inscripcion;
 use App\Models\Grupo;
+use App\Models\User;
 use App\Models\Usuario;
 use Illuminate\Http\Request;
 
 class InscripcionController extends Controller
 {
     public function index() {
-        $inscripciones = Inscripcion::with(['grupo', 'usuario'])->get();
+        $inscripciones = Inscripcion::with(['grupo', 'user'])->get();
         return view('inscripciones.index', compact('inscripciones'));
     }
 
     public function crear() {
         $grupos = Grupo::all();
-        $usuarios = Usuario::all(); // Aquí podrías filtrar solo por alumnos si tienes roles
+        $usuarios = User::all();
         return view('inscripciones.crear', compact('grupos', 'usuarios'));
     }
 
     public function guardar(Request $request) {
         $request->validate([
             'grupo_id' => 'required|exists:grupos,id',
-            'usuario_id' => 'required|exists:usuarios,id',
+            'user_id' => 'required|exists:users,id',
         ]);
 
         Inscripcion::create($request->all());
@@ -37,7 +38,7 @@ class InscripcionController extends Controller
     {
         $inscripcion = Inscripcion::findOrFail($id);
         $grupos = Grupo::all();
-        $usuarios = Usuario::all();
+        $usuarios = User::all();
 
         return view('inscripciones.editar', compact('inscripcion', 'grupos', 'usuarios'));
     }
@@ -46,7 +47,7 @@ class InscripcionController extends Controller
     {
         $request->validate([
             'grupo_id' => 'required|exists:grupos,id',
-            'usuario_id' => 'required|exists:usuarios,id',
+            'user_id' => 'required|exists:users,id',
         ]);
 
         $inscripcion = Inscripcion::findOrFail($id);

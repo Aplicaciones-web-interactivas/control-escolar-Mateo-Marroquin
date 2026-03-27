@@ -9,8 +9,8 @@ return new class extends Migration {
     {
         Schema::create('horarios', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('materia_id');
-            $table->foreignId('usuario_id');
+            $table->foreignId('materia_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->string('hora_inicio');
             $table->string('hora_fin');
             $table->timestamps();

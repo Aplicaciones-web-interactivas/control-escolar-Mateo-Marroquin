@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Usuario;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
@@ -17,46 +18,51 @@ class AuthController extends Controller
         return view('login');
     }
 
-    public function login(Request $request){
-        //dd($request->all());
-        $credenciales = $request->validate([
+    public function login(Request $request) {
+        $request->validate([
             'clave_institucional' => ['required'],
-            'contraseña' => ['required'],
+            'password' => ['required'],
         ]);
 
-        $usuario = Usuario::where('clave_institucional', $request->clave_institucional)->first();
+        if (Auth::attempt([
+            'clave_institucional' => $request->clave_institucional,
+            'password' => $request->password
+        ])) {
+            $request->session()->regenerate();
 
-        if ($usuario && Hash::check($request->contraseña, $usuario->contraseña)) {
-
-            //AuthController::login($usuario);
-
-            //$request->session()->regenerate();
-
-            return redirect('/dashboard')->with('success', 'Entraste correctamente.');
-
+            return redirect()->intended('/dashboard')->with('success', '¡Bienvenido de nuevo!');
         }
-        return back()->withErrors(['error' => 'Usuario o contraseña incorrectos']);
+
+        return back()->withErrors([
+            'error' => 'La clave o la contraseña no coinciden con nuestros registros.',
+        ]);
     }
 
     public function showRegisterForm(){
         return view('register');
     }
-    public function register(Request $request)
-    {
+    public function register(Request $request) {
         $request->validate([
-            'nombre' => ['required', 'string', 'max:255'],
-            'clave_institucional' => ['required', 'string', 'max:100', 'unique:usuarios'],
-            'contraseña' => ['required', 'string']
+            'name' => ['required', 'string', 'max:255'],
+            'clave_institucional' => ['required', 'unique:users'],
+            'password' => ['required'],
         ]);
 
-        $usuario = Usuario::create([
-            'nombre' => $request->nombre,
+        $user = \App\Models\User::create([
+            'name' => $request->name,
             'clave_institucional' => $request->clave_institucional,
-            'contraseña' => Hash::make($request->contraseña),
+            'password' => Hash::make($request->password),
         ]);
 
-        //Auth::login($user);
+        Auth::login($user);
 
-        return redirect('/login')->with('success', 'Cuenta creada con éxito. ¡Bienvenido!');
+        return redirect('/dashboard');
+    }
+
+    public function logout(Request $request) {
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect('/login');
     }
 }

@@ -10,7 +10,7 @@ return new class extends Migration {
         Schema::create('inscripcions', function (Blueprint $table) {
             $table->id();
             $table->foreignId('grupo_id')->constrained()->onDelete('cascade');
-            $table->foreignId('usuario_id')->constrained()->onDelete('cascade');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->timestamps();
             $table->softDeletes();
         });

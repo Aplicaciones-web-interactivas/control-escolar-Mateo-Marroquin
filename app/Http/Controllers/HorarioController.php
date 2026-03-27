@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Horario;
 use App\Models\Materia;
+use App\Models\User;
 use App\Models\Usuario;
 use Illuminate\Http\Request;
 
@@ -12,7 +13,7 @@ class HorarioController extends Controller
     public function index()
     {
         // Traemos los horarios con sus relaciones cargadas
-        $horarios = Horario::with(['materia', 'usuario'])->get();
+        $horarios = Horario::with(['materia', 'user'])->get();
 
         return view('horarios.index', compact('horarios'));
     }
@@ -21,7 +22,7 @@ class HorarioController extends Controller
     {
         // Traemos todos los datos para los select
         $materias = Materia::all();
-        $profesores = Usuario::all();
+        $profesores = User::all();
 
         return view('horarios.crear', compact('materias', 'profesores'));
     }
@@ -30,7 +31,7 @@ class HorarioController extends Controller
     {
         $request->validate([
             'materia_id' => 'required|exists:materias,id',
-            'usuario_id' => 'required|exists:usuarios,id',
+            'user_id' => 'required|exists:users,id',
             'hora_inicio' => 'required',
             'hora_fin' => 'required',
         ]);
@@ -45,7 +46,7 @@ class HorarioController extends Controller
     {
         $horario = Horario::findOrFail($id);
         $materias = Materia::all();
-        $profesores = Usuario::all();
+        $profesores = User::all();
 
         return view('horarios.editar', compact('horario', 'materias', 'profesores'));
     }
@@ -54,7 +55,7 @@ class HorarioController extends Controller
     {
         $request->validate([
             'materia_id' => 'required|exists:materias,id',
-            'usuario_id' => 'required|exists:usuarios,id',
+            'user_id' => 'required|exists:users,id',
             'hora_inicio' => 'required',
             'hora_fin' => 'required',
         ]);

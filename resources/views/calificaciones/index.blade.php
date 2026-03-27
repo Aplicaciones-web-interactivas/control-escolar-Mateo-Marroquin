@@ -17,7 +17,7 @@
                     <p class="text-sm text-gray-500">Listado oficial de notas por alumno y grupo.</p>
                 </div>
                 <a href="{{ route('calificaciones.crear') }}"
-                   class="bg-indigo-600 hover:bg-indigo-700 text-white px-5 py-2.5 rounded-xl text-sm font-bold transition shadow-lg">
+                   class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2.5 rounded-xl text-sm font-bold transition shadow-lg">
                     <i class="fas fa-plus-circle mr-2"></i> Asignar Calificación
                 </a>
             </div>
@@ -35,7 +35,7 @@
                     <tbody class="divide-y divide-gray-100">
                     @forelse($calificaciones as $c)
                         <tr class="hover:bg-indigo-50 transition">
-                            <td class="px-6 py-4 font-bold text-gray-800">{{ $c->usuario->nombre }}</td>
+                            <td class="px-6 py-4 font-bold text-gray-800">{{ $c->user->name }}</td>
                             <td class="px-6 py-4">
                                 <div class="text-sm font-semibold">{{ $c->grupo->horario->materia->nombre }}</div>
                                 <div class="text-xs text-gray-500 italic">Grupo: {{ $c->grupo->nombre }}</div>

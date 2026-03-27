@@ -11,7 +11,7 @@
             @csrf
             <div class="md:col-span-2">
                 <label class="block text-sm font-medium text-gray-700">Nombre Completo</label>
-                <input type="text" name='nombre' class="w-full mt-1 p-3 border rounded-xl focus:ring-2 focus:ring-blue-500 outline-none">
+                <input type="text" name='name' class="w-full mt-1 p-3 border rounded-xl focus:ring-2 focus:ring-blue-500 outline-none">
             </div>
 
             <div>
@@ -22,7 +22,7 @@
 
             <div class="md:col-span-2">
                 <label class="block text-sm font-medium text-gray-700">Contraseña</label>
-                <input type="password" name='contraseña' class="w-full mt-1 p-3 border rounded-xl focus:ring-2 focus:ring-blue-500 outline-none">
+                <input type="password" name='password' class="w-full mt-1 p-3 border rounded-xl focus:ring-2 focus:ring-blue-500 outline-none">
             </div>
 
             <button type="submit" class="md:col-span-2 mt-4 bg-green-600 text-white py-3 rounded-xl font-semibold hover:bg-green-700 transition-colors">

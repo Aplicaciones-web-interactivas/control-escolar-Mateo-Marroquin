@@ -7,7 +7,9 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        body { background-color: #f3f4f6; }
+        body {
+            background-color: #f3f4f6;
+        }
     </style>
 </head>
 <body class="flex flex-col min-h-screen">
@@ -16,8 +18,28 @@
     <div class="container mx-auto flex justify-between items-center">
         <h1 class="text-xl font-bold tracking-tight">Portal de Sistemas</h1>
         <div class="space-x-4">
-            <a href="{{route('dashboard')}}" class="hover:text-blue-300">Inicio</a>
-            <a href="{{route('login')}}" class="bg-blue-700 px-4 py-2 rounded-lg hover:bg-blue-600">Acceso</a>
+
+            @auth
+                <a href="{{ route('dashboard') }}" class="bg-green-700 px-4 py-2 rounded-lg hover:bg-green-600">
+                    <i class="fa-solid fa-user-check mr-1"></i> Panel
+                </a>
+
+                <form method="POST" action="{{ route('logout') }}" class="inline">
+                    @csrf
+                    <button type="submit" class="text-white hover:text-gray-200 ml-2">
+                        Salir
+                    </button>
+                </form>
+            @endauth
+
+            @guest
+                <a href="{{ route('login') }}" class="bg-green-600 px-4 py-2 rounded-lg hover:bg-green-500">
+                    Inicia Sesión
+                </a>
+                <a href="{{ route('register') }}" class="bg-blue-700 px-4 py-2 rounded-lg hover:bg-blue-600">
+                    Registrate
+                </a>
+            @endguest
         </div>
     </div>
 </nav>

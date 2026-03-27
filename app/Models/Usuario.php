@@ -24,8 +24,4 @@ class Usuario extends Model
         ];
     }
 
-    public function inscripcions(): HasMany
-    {
-        return $this->hasMany(Inscripcion::class);
-    }
 }

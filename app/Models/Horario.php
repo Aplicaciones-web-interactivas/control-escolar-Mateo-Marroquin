@@ -9,7 +9,7 @@ class Horario extends Model
 {
     protected $fillable = [
         'materia_id',
-        'usuario_id',
+        'user_id',
         'hora_inicio',
         'hora_fin',
     ];
@@ -19,8 +19,8 @@ class Horario extends Model
         return $this->belongsTo(Materia::class);
     }
 
-    public function usuario(): BelongsTo
+    public function user(): BelongsTo
     {
-        return $this->belongsTo(Usuario::class);
+        return $this->belongsTo(User::class);
     }
 }

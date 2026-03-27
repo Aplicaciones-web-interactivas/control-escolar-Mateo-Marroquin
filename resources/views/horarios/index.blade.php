@@ -39,7 +39,7 @@
                                 {{ $horario->materia->nombre }}
                             </td>
                             <td class="px-6 py-4 text-gray-600 font-medium">
-                                {{ $horario->usuario->nombre }}
+                                {{ $horario->user->name }}
                             </td>
                             <td class="px-6 py-4">
                                 <span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-xs font-bold font-mono border border-blue-200">

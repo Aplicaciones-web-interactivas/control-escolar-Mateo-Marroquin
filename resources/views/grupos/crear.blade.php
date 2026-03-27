@@ -5,7 +5,8 @@
 @section('content')
     <div class="max-w-2xl mx-auto">
         <div class="mb-4">
-            <a href="{{ route('grupos.index') }}" class="text-blue-600 hover:text-blue-800 text-sm font-semibold flex items-center">
+            <a href="{{ route('grupos.index') }}"
+               class="text-blue-600 hover:text-blue-800 text-sm font-semibold flex items-center">
                 <i class="fas fa-arrow-left mr-2"></i> Volver a la lista
             </a>
         </div>
@@ -15,24 +16,37 @@
                 <h3 class="text-xl font-bold text-white">Registrar Nuevo Grupo</h3>
                 <p class="text-blue-100 text-sm opacity-90">Asigna un nombre y vincula un horario existente.</p>
             </div>
-
+            @if ($errors->any())
+                <div class="bg-red-50 border border-red-200 text-red-600 p-4 mb-6 rounded-xl">
+                    <p class="font-bold">Hubo errores al validar:</p>
+                    <ul class="list-disc list-inside">
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
             <form action="{{ route('grupos.guardar') }}" method="POST" class="p-8 space-y-6">
                 @csrf
 
                 <div>
-                    <label for="nombre" class="block text-sm font-bold text-gray-700 mb-2 uppercase tracking-wide">Nombre del Grupo</label>
+                    <label for="nombre" class="block text-sm font-bold text-gray-700 mb-2 uppercase tracking-wide">Nombre
+                        del Grupo</label>
                     <input type="text" name="nombre" id="nombre" value="{{ old('nombre') }}" placeholder="Ej. 8° A"
                            class="w-full p-3.5 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none transition @error('nombre') border-red-500 @enderror">
                     @error('nombre') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
                 </div>
 
                 <div>
-                    <label for="horario_id" class="block text-sm font-bold text-gray-700 mb-2 uppercase tracking-wide">Asignar Horario</label>
-                    <select name="horario_id" id="horario_id" class="w-full p-3.5 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none transition">
+                    <label for="horario_id" class="block text-sm font-bold text-gray-700 mb-2 uppercase tracking-wide">Asignar
+                        Horario</label>
+                    <select name="horario_id" id="horario_id"
+                            class="w-full p-3.5 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none transition">
                         <option value="">-- Selecciona un Horario --</option>
                         @foreach($horarios as $h)
                             <option value="{{ $h->id }}" @selected(old('horario_id') == $h->id)>
-                                {{ $h->materia->nombre }} ({{ $h->hora_inicio }} - {{ $h->hora_fin }}) - Prof. {{ $h->usuario->nombre }}
+                                {{ $h->materia->nombre }} ({{ $h->hora_inicio }} - {{ $h->hora_fin }}) -
+                                Prof. {{ $h->user->name }}
                             </option>
                         @endforeach
                     </select>
@@ -40,7 +54,8 @@
                 </div>
 
                 <div class="pt-6">
-                    <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-4 rounded-xl font-bold transition shadow-lg hover:shadow-blue-200 uppercase tracking-widest">
+                    <button type="submit"
+                            class="w-full bg-blue-600 hover:bg-blue-700 text-white py-4 rounded-xl font-bold transition shadow-lg hover:shadow-blue-200 uppercase tracking-widest">
                         Guardar Grupo
                     </button>
                 </div>
