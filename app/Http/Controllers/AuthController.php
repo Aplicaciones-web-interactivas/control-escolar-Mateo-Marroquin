@@ -46,12 +46,14 @@ class AuthController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'clave_institucional' => ['required', 'unique:users'],
             'password' => ['required'],
+            'rol' => ['required']
         ]);
 
         $user = \App\Models\User::create([
             'name' => $request->name,
             'clave_institucional' => $request->clave_institucional,
             'password' => Hash::make($request->password),
+            'rol' => $request->rol,
         ]);
 
         Auth::login($user);

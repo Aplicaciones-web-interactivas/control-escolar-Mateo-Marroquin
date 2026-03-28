@@ -23,7 +23,22 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         //Del 1 al 5 son estudiantes y del 6 al 10 profesores
-        User::factory(10)->create();
+        User::factory()
+            ->count(11)
+            ->sequence(
+                ['name' => 'Alumno 1', 'rol' => 'alumno', 'clave_institucional' => '101'],
+                ['name' => 'Alumno 2', 'rol' => 'alumno', 'clave_institucional' => '102'],
+                ['name' => 'Alumno 3', 'rol' => 'alumno', 'clave_institucional' => '103'],
+                ['name' => 'Alumno 4', 'rol' => 'alumno', 'clave_institucional' => '104'],
+                ['name' => 'Alumno 5', 'rol' => 'alumno', 'clave_institucional' => '105'],
+                ['name' => 'Profesor 1', 'rol' => 'profesor', 'clave_institucional' => '106'],
+                ['name' => 'Profesor 2', 'rol' => 'profesor', 'clave_institucional' => '107'],
+                ['name' => 'Profesor 3', 'rol' => 'profesor', 'clave_institucional' => '108'],
+                ['name' => 'Profesor 4', 'rol' => 'profesor', 'clave_institucional' => '109'],
+                ['name' => 'Profesor 5', 'rol' => 'profesor', 'clave_institucional' => '110'],
+                ['name' => 'ADMIN', 'rol' => 'admin', 'clave_institucional' => '0'],
+            )
+            ->create();
 
         Materia::create([
             'nombre' => 'Aprendizaje Automático',

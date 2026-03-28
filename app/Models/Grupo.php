@@ -20,6 +20,6 @@ class Grupo extends Model
 
     public function inscripcions(): HasMany
     {
-        return $this->hasMany(Inscripcion::class);
+        return $this->hasMany(Inscripcion::class, 'grupo_id');
     }
 }
